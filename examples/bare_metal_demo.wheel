@@ -1,0 +1,102 @@
+// Bare Metal Demo for Wheel
+// Demonstrates memory management, I/O, filesystem, and process management
+
+use #memory;
+use #hwio;
+use #filesystem;
+use #process;
+
+func main() {
+    print("=== Wheel Bare Metal Demo ===");
+    
+    // Memory Management Example
+    print("");
+    print("1. Memory Management:");
+    let mem_ptr = mem_alloc(256);
+    print("Allocated 256 bytes");
+    
+    let used = mem_get_used();
+    let free = mem_get_free();
+    print("Memory used:");
+    print(used);
+    print("Memory free:");
+    print(free);
+    
+    mem_free(mem_ptr);
+    print("Freed memory");
+    
+    // Hardware I/O Example
+    print("");
+    print("2. Hardware I/O:");
+    print("Reading from port 0x3F8 (serial):");
+    let port_val = io_read_port(1016);
+    print(port_val);
+    
+    print("Writing to port 0x3F8:");
+    io_write_port(1016, 65);  // ASCII 'A'
+    print("Wrote 65 to port");
+    
+    // I/O Control
+    print("Disabling interrupts");
+    io_disable_interrupts();
+    
+    print("Enabling interrupts");
+    io_enable_interrupts();
+    
+    // Filesystem Example
+    print("");
+    print("3. Filesystem Operations:");
+    
+    // Note: In a real bare metal scenario, you'd operate on actual disk devices
+    // This example shows the function calls
+    print("Filesystem handle operations:");
+    print("(In real bare metal, would operate on /dev/sda or similar)");
+    
+    // Process Management Example
+    print("");
+    print("4. Process Management:");
+    
+    let current_pid = process_get_current_pid();
+    print("Current process ID:");
+    print(current_pid);
+    
+    let parent_pid = process_get_parent_pid();
+    print("Parent process ID:");
+    print(parent_pid);
+    
+    print("Creating child process");
+    let child = process_create("echo 'Child process running'");
+    print("Child process handle:");
+    print(child);
+    
+    if child >= 0 {
+        print("Waiting for child process");
+        let exit_code = process_wait(child);
+        print("Child exit code:");
+        print(exit_code);
+    }
+    
+    print("");
+    print("=== Demo Complete ===");
+}
+
+func demo_arrays() {
+    print("");
+    print("Array Demo:");
+    
+    // Note: Full array support coming soon
+    // This shows the syntax we're adding:
+    // let arr: int[10] = [1, 2, 3, 4, 5];
+    // arr[0] = 10;
+    // print(arr[0]);
+}
+
+func demo_structs() {
+    print("");
+    print("Struct Demo:");
+    
+    // Note: Full struct support coming soon
+    // This shows the syntax we're adding:
+    // struct Point { x: int, y: int }
+    // let p: Point = {10, 20};
+}

@@ -1,0 +1,83 @@
+// Calculadora completa com menu melhorado
+// Compile: cargo run --release --features llvm -- examples/calculator.wheel -o calc --mode ll
+// Run: ./calc
+
+print("╔════════════════════════════════════╗\n");
+print("║   Calculadora Wheel v1.0           ║\n");
+print("╚════════════════════════════════════╝\n");
+print("\n");
+
+let continuar = 1;
+
+while continuar == 1 {
+    print("Escolha uma operacao:\n");
+    print("1: Adicao\n");
+    print("2: Subtracao\n");
+    print("3: Multiplicacao\n");
+    print("4: Divisao\n");
+    print("5: Resto (Modulo)\n");
+    print("0: Sair\n");
+    print(">> ");
+    
+    let opcao = input();
+    
+    if opcao == "0" {
+        continuar = 0;
+        print("Até logo!\n");
+    }
+    
+    if opcao == "1" {
+        print("Digite o primeiro numero: ");
+        let num1 = input();
+        print("Digite o segundo numero: ");
+        let num2 = input();
+        let resultado = num1 + num2;
+        print("Resultado: ");
+        print(resultado);
+        print("\n\n");
+    }
+    
+    if opcao == "2" {
+        print("Digite o primeiro numero: ");
+        let num1 = input();
+        print("Digite o segundo numero: ");
+        let num2 = input();
+        let resultado = num1 - num2;
+        print("Resultado: ");
+        print(resultado);
+        print("\n\n");
+    }
+    
+    if opcao == "3" {
+        print("Digite o primeiro numero: ");
+        let num1 = input();
+        print("Digite o segundo numero: ");
+        let num2 = input();
+        let resultado = num1 * num2;
+        print("Resultado: ");
+        print(resultado);
+        print("\n\n");
+    }
+    
+    if opcao == "4" {
+        print("Digite o primeiro numero: ");
+        let num1 = input();
+        print("Digite o segundo numero: ");
+        let num2 = input();
+        let resultado = num1 / num2;
+        print("Resultado: ");
+        print(resultado);
+        print("\n\n");
+    }
+    
+    if opcao == "5" {
+        print("Digite o primeiro numero: ");
+        let num1 = input();
+        print("Digite o segundo numero: ");
+        let num2 = input();
+        let resultado = num1 % num2;
+        print("Resultado: ");
+        print(resultado);
+        print("\n\n");
+    }
+}

@@ -1,0 +1,15 @@
+use #luck;
+
+print("=== Teste Luck Random ===");
+
+let num1 = luck_random(10);
+print("Random 0-10: ");
+print(num1);
+
+let num2 = luck_random(100);
+print("Random 0-100: ");
+print(num2);
+
+let num3 = luck_random_range(1, 10);
+print("Random 1-10: ");
+print(num3);

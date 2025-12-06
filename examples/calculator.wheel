@@ -1,0 +1,36 @@
+print("=== Calculadora Wheel ===");
+
+print("Digite o primeiro numero: ");
+let num1 = input();
+
+print("Digite o segundo numero: ");
+let num2 = input();
+
+print("Operacao (1=+ 2=- 3=* 4=/): ");
+let op = input();
+
+let result = 0;
+
+if op == 1 {
+    result = num1 + num2;
+    print("Resultado: ");
+    print(result);
+}
+
+if op == 2 {
+    result = num1 - num2;
+    print("Resultado: ");
+    print(result);
+}
+
+if op == 3 {
+    result = num1 * num2;
+    print("Resultado: ");
+    print(result);
+}
+
+if op == 4 {
+    result = num1 / num2;
+    print("Resultado: ");
+    print(result);
+}

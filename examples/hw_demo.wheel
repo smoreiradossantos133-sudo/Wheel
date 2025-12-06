@@ -1,0 +1,18 @@
+// Hardware I/O example: CPU control demonstration
+// Compile with: cargo run --release --features llvm,hwio -- examples/hw_demo.wheel -o hw_demo --mode ll
+// This example shows how to interact with hardware (requires elevated privileges)
+
+print("=== Hardware I/O Demo ===\n");
+print("This example demonstrates low-level hardware access\n");
+print("Note: Actual hardware operations require kernel privileges\n");
+
+// In a Wheel program, you would use:
+// let status = port_read_byte(0x3F8);  // Serial port status
+// port_write_byte(0x3F8, 65);           // Write 'A' to serial port
+
+// Pseudo-code for kernel development:
+// cpu_cli();                            // Disable interrupts
+// // ... critical section ...
+// cpu_sti();                            // Enable interrupts
+
+print("Hardware functions declared but require unsafe context\n");

@@ -1,0 +1,9 @@
+let i = 1;
+let max = 3;
+
+while i < max {
+    print(i);
+    set i = i + 1;
+}
+
+print("done");

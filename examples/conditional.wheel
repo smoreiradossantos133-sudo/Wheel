@@ -1,0 +1,11 @@
+let x = 5;
+let y = 3;
+
+if x > y then {
+    print("x is greater than y");
+}
+else {
+    print("x is not greater than y");
+}
+
+print("done");

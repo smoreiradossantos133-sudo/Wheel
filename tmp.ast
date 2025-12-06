@@ -1,0 +1,92 @@
+Program {
+    items: [
+        Func {
+            name: "main",
+            params: [],
+            body: [
+                Expr(
+                    Call {
+                        name: "print",
+                        args: [
+                            Str(
+                                "For in range test:",
+                            ),
+                        ],
+                    },
+                ),
+                Expr(
+                    Call {
+                        name: "print",
+                        args: [
+                            Str(
+                                "Loop from 0 to 5:",
+                            ),
+                        ],
+                    },
+                ),
+                ForRange {
+                    var: "i",
+                    start: Int(
+                        0,
+                    ),
+                    end: Int(
+                        5,
+                    ),
+                    body: [
+                        Expr(
+                            Call {
+                                name: "print",
+                                args: [
+                                    Ident(
+                                        "i",
+                                    ),
+                                ],
+                            },
+                        ),
+                    ],
+                },
+                Expr(
+                    Call {
+                        name: "print",
+                        args: [
+                            Str(
+                                "Loop from 2 to 7:",
+                            ),
+                        ],
+                    },
+                ),
+                ForRange {
+                    var: "j",
+                    start: Int(
+                        2,
+                    ),
+                    end: Int(
+                        7,
+                    ),
+                    body: [
+                        Expr(
+                            Call {
+                                name: "print",
+                                args: [
+                                    Ident(
+                                        "j",
+                                    ),
+                                ],
+                            },
+                        ),
+                    ],
+                },
+                Expr(
+                    Call {
+                        name: "print",
+                        args: [
+                            Str(
+                                "Done",
+                            ),
+                        ],
+                    },
+                ),
+            ],
+        },
+    ],
+}

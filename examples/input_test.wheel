@@ -1,0 +1,1 @@
+print("type something: "); let s = input(); print(s);

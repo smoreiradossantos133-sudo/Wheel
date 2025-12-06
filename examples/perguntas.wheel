@@ -1,0 +1,23 @@
+print("Fassa o calculo de um numero\n");
+print("1: Adicao");
+print("2: Subtracao");
+
+let Opcao = input();
+
+if Opcao == "1" {
+    print("Digite o primeiro numero que voce quer somar");
+    let Numero = input();
+    print("Digite o segundo numero que voce quer somar");
+    let Secondnumero = input();
+    let Resultado = Numero + Secondnumero;
+    print(Resultado - 1);
+}
+
+if Opcao == "2" {
+    print("Digite o primeiro numero que voce quer subtrair");
+    let Numero = input();
+    print("Digite o segundo numero que voce quer subtrair");
+    let Secondnumero = input();
+    let Resultado = Numero - Secondnumero;
+    print(Resultado - 1);
+}

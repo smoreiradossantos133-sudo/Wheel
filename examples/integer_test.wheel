@@ -1,0 +1,30 @@
+// Test for integer literals (should work correctly)
+print("=== Integer Literal Test ===\n");
+let x = 15;
+let y = 25;
+let sum = x + y;
+print("15 + 25 = ");
+print(sum);
+print("\n");
+
+let diff = y - x;
+print("25 - 15 = ");
+print(diff);
+print("\n");
+
+let prod = x * y;
+print("15 * 25 = ");
+print(prod);
+print("\n");
+
+let div = y / x;
+print("25 / 15 = ");
+print(div);
+print("\n");
+
+let mod_res = y % x;
+print("25 % 15 = ");
+print(mod_res);
+print("\n");
+
+print("=== All tests completed ===\n");

@@ -1,0 +1,46 @@
+// Exemplo com sistema de imports - SDL Graphics
+// Compile: cargo run --release --features llvm,sdl -- examples/sdl_with_imports.wheel -o sdl_with_imports --mode ll
+// Uso de bibliotecas com: use #<nome_da_biblioteca>
+
+use #sdl;
+
+print("SDL Graphics Demo with Imports\n");
+print("================================\n\n");
+
+print("Initializing SDL2 Library...\n");
+let init = sdl_init();
+
+if init == 1 {
+    print("✓ SDL initialized successfully\n");
+    print("Creating window (800x600)...\n");
+    
+    let window = sdl_create_window(800, 600, "Wheel SDL Demo");
+    
+    if window == 1 {
+        print("✓ Window created\n");
+        print("Drawing graphics...\n");
+        
+        // Clear background
+        sdl_clear(0, 0, 0);
+        
+        // Draw some rectangles
+        sdl_draw_rect(50, 50, 300, 200, 255, 0, 0);
+        sdl_draw_rect(400, 50, 300, 200, 0, 255, 0);
+        sdl_draw_rect(50, 300, 300, 200, 0, 0, 255);
+        sdl_draw_rect(400, 300, 300, 200, 255, 255, 0);
+        
+        print("✓ Graphics rendered\n");
+        sdl_present();
+        
+        sleep(3);
+        
+        print("Cleaning up...\n");
+        sdl_destroy_window();
+        sdl_quit();
+        print("✓ SDL closed\n");
+    }
+} else {
+    print("✗ Failed to initialize SDL\n");
+}
+
+print("\nDemo finished!\n");

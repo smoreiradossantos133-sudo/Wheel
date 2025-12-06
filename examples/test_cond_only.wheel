@@ -1,0 +1,7 @@
+let i = 1;
+
+if i < 3 {
+    print("if works");
+}
+
+print("done");

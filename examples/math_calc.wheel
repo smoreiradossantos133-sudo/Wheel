@@ -1,0 +1,13 @@
+// Math example: Pythagorean theorem
+// Compile with: cargo run --release --features llvm -- examples/math_calc.wheel -o math_calc --mode ll
+// Run with: ./math_calc
+
+print("=== Pythagorean Theorem Calculator ===\n");
+print("Enter side a: ");
+let a = input();
+print("Enter side b: ");
+let b = input();
+
+// In a real implementation, we would convert to float, do math, then back
+// For now, this is a placeholder since f64 support requires LLVM backend changes
+print("Calculation requires float support (coming soon)\n");

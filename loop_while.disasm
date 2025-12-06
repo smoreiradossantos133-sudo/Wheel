@@ -1,0 +1,54 @@
+
+./loop_while:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000001000 <_start>:
+    1000:	48 c7 c0 01 00 00 00 	mov    rax,0x1
+    1007:	48 89 05 f2 30 00 00 	mov    QWORD PTR [rip+0x30f2],rax        # 4100 <i>
+    100e:	48 c7 c0 03 00 00 00 	mov    rax,0x3
+    1015:	48 89 05 ec 30 00 00 	mov    QWORD PTR [rip+0x30ec],rax        # 4108 <max>
+
+000000000000101c <Lloop_0>:
+    101c:	48 8b 05 dd 30 00 00 	mov    rax,QWORD PTR [rip+0x30dd]        # 4100 <i>
+    1023:	50                   	push   rax
+    1024:	48 8b 05 dd 30 00 00 	mov    rax,QWORD PTR [rip+0x30dd]        # 4108 <max>
+    102b:	48 89 c3             	mov    rbx,rax
+    102e:	58                   	pop    rax
+    102f:	48 39 d8             	cmp    rax,rbx
+    1032:	0f 9c c0             	setl   al
+    1035:	48 0f b6 c0          	movzx  rax,al
+    1039:	48 83 f8 00          	cmp    rax,0x0
+    103d:	74 5b                	je     109a <Lexit_0>
+    103f:	48 c7 c0 01 00 00 00 	mov    rax,0x1
+    1046:	48 c7 c7 01 00 00 00 	mov    rdi,0x1
+    104d:	48 8b 05 ac 30 00 00 	mov    rax,QWORD PTR [rip+0x30ac]        # 4100 <i>
+    1054:	48 8d 35 a5 2f 00 00 	lea    rsi,[rip+0x2fa5]        # 4000 <__bss_start>
+    105b:	48 89 c3             	mov    rbx,rax
+    105e:	48 83 c3 30          	add    rbx,0x30
+    1062:	88 1e                	mov    BYTE PTR [rsi],bl
+    1064:	48 c7 c2 01 00 00 00 	mov    rdx,0x1
+    106b:	48 c7 c0 01 00 00 00 	mov    rax,0x1
+    1072:	48 c7 c7 01 00 00 00 	mov    rdi,0x1
+    1079:	0f 05                	syscall
+    107b:	48 8b 05 7e 30 00 00 	mov    rax,QWORD PTR [rip+0x307e]        # 4100 <i>
+    1082:	50                   	push   rax
+    1083:	48 c7 c0 01 00 00 00 	mov    rax,0x1
+    108a:	48 89 c3             	mov    rbx,rax
+    108d:	58                   	pop    rax
+    108e:	48 01 d8             	add    rax,rbx
+    1091:	48 89 05 68 30 00 00 	mov    QWORD PTR [rip+0x3068],rax        # 4100 <i>
+    1098:	eb 82                	jmp    101c <Lloop_0>
+
+000000000000109a <Lexit_0>:
+    109a:	48 c7 c0 01 00 00 00 	mov    rax,0x1
+    10a1:	48 c7 c7 01 00 00 00 	mov    rdi,0x1
+    10a8:	48 8d 35 52 0f 00 00 	lea    rsi,[rip+0xf52]        # 2001 <Lmsg1>
+    10af:	48 c7 c2 04 00 00 00 	mov    rdx,0x4
+    10b6:	48 c7 c0 01 00 00 00 	mov    rax,0x1
+    10bd:	48 c7 c7 01 00 00 00 	mov    rdi,0x1
+    10c4:	0f 05                	syscall
+    10c6:	48 c7 c0 3c 00 00 00 	mov    rax,0x3c
+    10cd:	48 31 ff             	xor    rdi,rdi
+    10d0:	0f 05                	syscall

@@ -1,0 +1,17 @@
+use #hwio;
+
+func main() {
+    print("Hardware I/O Test");
+    
+    print("Reading from port 0x3F8 (COM1 serial):");
+    let val = io_read_port(1016);
+    print(val);
+    
+    print("Disabling interrupts");
+    io_disable_interrupts();
+    
+    print("Enabling interrupts");
+    io_enable_interrupts();
+    
+    print("I/O Test Complete");
+}

@@ -1,0 +1,26 @@
+# Building wheelc for macOS
+
+Since this is a Linux container, we cannot build for macOS architecture (x86_64-apple-darwin).
+
+To build wheelc for macOS, do the following ON A NATIVE MAC:
+
+1. Clone the Wheel repository:
+   git clone https://github.com/smoreiradossantos133-sudo/Wheel.git
+   cd Wheel
+
+2. Install Rust (if not already installed):
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+3. Build the release binary:
+   cargo build --release
+
+4. Copy to dist/MacOS:
+   cp target/release/wheelc dist/MacOS/wheelc
+   chmod +x dist/MacOS/wheelc
+
+5. Commit and push to repository:
+   git add dist/MacOS/wheelc
+   git commit -m "Add macOS x86_64 executable"
+   git push
+
+Alternatively, you can use GitHub Actions CI to build automatically.

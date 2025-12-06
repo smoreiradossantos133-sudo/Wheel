@@ -1,0 +1,45 @@
+// Hardware I/O Demo - Comunicação com porta serial
+// Compile: cargo run --release --features llvm,hwio -- examples/hw_serial.wheel -o hw_serial --mode ll
+// Run (requires root): sudo ./hw_serial
+
+print("====================================\n");
+print("Hardware I/O Serial Port Demo\n");
+print("====================================\n\n");
+
+// Serial port I/O ports
+let SERIAL_DATA = 0x3F8;        // COM1 data port
+let SERIAL_STATUS = 0x3FD;      // COM1 line status port
+let TRANSMITTER_EMPTY = 0x20;   // Bit 5 in status register
+
+print("Serial Port: 0x3F8 (COM1)\n");
+print("Attempting to check serial port status...\n\n");
+
+// Read serial port status
+let status = port_read_byte(SERIAL_STATUS);
+print("Serial port status read: ");
+print(status);
+print("\n");
+
+// Check if transmitter is empty
+if status & TRANSMITTER_EMPTY {
+    print("Transmitter is ready!\n");
+    
+    // Write some bytes to the serial port
+    print("Sending data to serial port...\n");
+    
+    port_write_byte(SERIAL_DATA, 72);   // 'H'
+    port_write_byte(SERIAL_DATA, 101);  // 'e'
+    port_write_byte(SERIAL_DATA, 108);  // 'l'
+    port_write_byte(SERIAL_DATA, 108);  // 'l'
+    port_write_byte(SERIAL_DATA, 111);  // 'o'
+    port_write_byte(SERIAL_DATA, 10);   // '\n'
+    
+    print("Data sent!\n");
+} else {
+    print("Transmitter not ready\n");
+}
+
+print("\nNote: This example requires:\n");
+print("- Root or elevated privileges\n");
+print("- A serial port device (/dev/ttyS0)\n");
+print("- Actual hardware serial port\n");

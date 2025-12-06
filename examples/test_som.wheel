@@ -1,0 +1,4 @@
+use #som;
+
+print("test_som linked");
+print(1 + 2);

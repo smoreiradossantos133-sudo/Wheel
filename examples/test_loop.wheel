@@ -1,0 +1,14 @@
+// Test simples de while loop
+print("Testing while loop\n");
+
+let i = 0;
+print("Starting loop\n");
+
+while i < 3 {
+    print("i = ");
+    print(i);
+    print("\n");
+    i = i + 1;
+}
+
+print("Loop ended\n");

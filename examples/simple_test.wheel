@@ -1,0 +1,19 @@
+// Simple test - sem loops complexos
+print("Starting\n");
+
+let x = 10;
+print("x = ");
+print(x);
+print("\n");
+
+let y = 20;
+print("y = ");
+print(y);
+print("\n");
+
+let sum = x + y;
+print("sum = ");
+print(sum);
+print("\n");
+
+print("Done\n");

@@ -1,0 +1,9 @@
+print("start");
+let x = 5;
+print("x defined");
+
+if x > 3 then {
+    print("yes");
+}
+
+print("end");

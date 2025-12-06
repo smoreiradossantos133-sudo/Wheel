@@ -1,0 +1,28 @@
+use #process;
+
+func main() {
+    print("Process Management Test");
+    
+    let pid = process_get_current_pid();
+    print("Current PID:");
+    print(pid);
+    
+    let ppid = process_get_parent_pid();
+    print("Parent PID:");
+    print(ppid);
+    
+    print("Creating child process");
+    let child = process_create("echo Child process started");
+    
+    if child >= 0 {
+        print("Child handle:");
+        print(child);
+        
+        print("Waiting for child");
+        let exit_code = process_wait(child);
+        print("Child exit code:");
+        print(exit_code);
+    }
+    
+    print("Done");
+}

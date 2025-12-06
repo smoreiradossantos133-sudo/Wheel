@@ -1,0 +1,43 @@
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) [answered N; input not from terminal]
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7df845f in __GI_____strtol_l_internal (nptr=0x0, endptr=endptr@entry=0x0, base=base@entry=10, group=group@entry=0, bin_cst=bin_cst@entry=true, loc=0x7ffff7fa83c0 <_nl_global_locale>) at ../stdlib/strtol_l.c:304
+warning: 304	../stdlib/strtol_l.c: No such file or directory
+#0  0x00007ffff7df845f in __GI_____strtol_l_internal (nptr=0x0, endptr=endptr@entry=0x0, base=base@entry=10, group=group@entry=0, bin_cst=bin_cst@entry=true, loc=0x7ffff7fa83c0 <_nl_global_locale>) at ../stdlib/strtol_l.c:304
+        negative = <optimized out>
+        cutoff = <optimized out>
+        cutlim = <optimized out>
+        i = <optimized out>
+        s = 0x0
+        c = <optimized out>
+        save = <optimized out>
+        end = <optimized out>
+        overflow = <optimized out>
+        cnt = <optimized out>
+        current = 0x7ffff7fa4500 <_nl_C_LC_NUMERIC>
+        thousands = 0x0
+        thousands_len = 0
+        grouping = 0x0
+        j = <optimized out>
+        jmax = <optimized out>
+        __res = <optimized out>
+        __c = <optimized out>
+        __res = <optimized out>
+        __c = <optimized out>
+        __res = <optimized out>
+        __c = <optimized out>
+        __res = <optimized out>
+        __c = <optimized out>
+#1  0x00007ffff7df840c in __GI___isoc23_strtol (nptr=<optimized out>, endptr=endptr@entry=0x0, base=base@entry=10) at ../stdlib/strtol.c:126
+No locals.
+#2  0x00007ffff7dea674 in __GI_atoi (nptr=<optimized out>) at ./stdlib/atoi.c:27
+No locals.
+#3  0x00005555555551b4 in main ()
+No symbol table info available.

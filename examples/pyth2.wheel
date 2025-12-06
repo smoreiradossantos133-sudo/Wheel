@@ -1,0 +1,11 @@
+let base = 3;
+let height = 4;
+let hyp = base * base + height * height;
+print("Pythagorean:\n");
+print("Base: ");
+print(base);
+print("\nHeight: ");
+print(height);
+print("\nHypotenuse^2: ");
+print(hyp);
+print("\n");

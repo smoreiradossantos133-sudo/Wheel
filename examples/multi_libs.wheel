@@ -1,0 +1,48 @@
+// Exemplo com múltiplas bibliotecas
+// Compile: cargo run --release --features llvm,hwio,os -- examples/multi_libs.wheel -o multi_libs --mode ll
+
+use #hwio;
+use #os;
+use #math;
+
+print("Multi-Library Demo\n");
+print("==================\n\n");
+
+// Hardware library demo
+print("1. Hardware Library (hwio)\n");
+print("CPU operations available with hwio library\n");
+let status = port_read_byte(0x3F8);
+print("Serial port status: ");
+print(status);
+print("\n\n");
+
+// OS library demo
+print("2. Operating System Library (os)\n");
+print("Process ID: ");
+let pid = getpid();
+print(pid);
+print("\n");
+print("Sleeping for 1 second...\n");
+sleep(1);
+print("Done!\n\n");
+
+// Math operations (always available)
+print("3. Math Library (math)\n");
+let a = 10;
+let b = 3;
+print("a = ");
+print(a);
+print(", b = ");
+print(b);
+print("\n");
+print("a + b = ");
+print(a + b);
+print("\n");
+print("a * b = ");
+print(a * b);
+print("\n");
+print("a / b = ");
+print(a / b);
+print("\n");
+
+print("\nAll libraries loaded and working!\n");

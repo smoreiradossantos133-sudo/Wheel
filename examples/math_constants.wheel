@@ -1,0 +1,6 @@
+import "constants";
+print("Pi estimate: ");
+print(constants_pi);
+print("\nE estimate: ");
+print(constants_e);
+print("\n");

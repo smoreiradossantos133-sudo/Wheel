@@ -1,0 +1,18 @@
+print("=== Calculadora Wheel ===");
+
+let num1 = 10;
+let num2 = 4;
+
+print("10 + 4 = ");
+print(num1 + num2);
+
+print("10 - 4 = ");
+print(num1 - num2);
+
+print("10 * 4 = ");
+print(num1 * num2);
+
+print("10 / 4 = ");
+print(num1 / num2);
+
+print("=== Fim ===");

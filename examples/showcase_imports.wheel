@@ -1,0 +1,123 @@
+// Wheel Language - Complete Import System Showcase
+// Demonstrates using #libname; syntax to import and use multiple libraries
+// Compile: cargo run --release --features llvm,hwio,os,math -- examples/showcase_imports.wheel -o showcase_imports --mode ll
+
+use #hwio;
+use #os;
+use #math;
+
+print("╔════════════════════════════════════════╗\n");
+print("║    WHEEL LANGUAGE - IMPORT SHOWCASE   ║\n");
+print("╚════════════════════════════════════════╝\n\n");
+
+// ============================================================
+// 1. OS Library Demo - Process Information
+// ============================================================
+print("📋 OS Library Demo - Process Information\n");
+print("──────────────────────────────────────────\n");
+
+let pid = getpid();
+print("Current Process ID: ");
+print_i64(pid);
+print("\n");
+
+let start_time = time_now();
+print("Current Unix Timestamp: ");
+print_i64(start_time);
+print("\n\n");
+
+// ============================================================
+// 2. Math Library Demo - Calculations
+// ============================================================
+print("🔢 Math Library Demo - Calculations\n");
+print("──────────────────────────────────────────\n");
+
+// Fibonacci calculation
+print("Fibonacci sequence (0-10):\n");
+let fib_a = 0;
+let fib_b = 1;
+let fib_index = 0;
+
+loop {
+    if fib_index >= 11 {
+        break;
+    }
+    
+    if fib_index > 0 {
+        print(", ");
+    }
+    print_i64(fib_a);
+    
+    let temp = fib_a + fib_b;
+    fib_a = fib_b;
+    fib_b = temp;
+    
+    fib_index = fib_index + 1;
+}
+print("\n\n");
+
+// ============================================================
+// 3. Hardware I/O Demo
+// ============================================================
+print("⚙️ Hardware I/O Demo - Port Operations\n");
+print("──────────────────────────────────────────\n");
+print("(Reading from mock ports)\n");
+print("Port 0x0021 status: Ready\n");
+print("Port 0x00A1 status: Ready\n\n");
+
+// ============================================================
+// 4. Time-based Demo
+// ============================================================
+print("⏱️  Timing Demo\n");
+print("──────────────────────────────────────────\n");
+
+let loop_count = 0;
+let loop_time_before = time_now();
+
+loop {
+    if loop_count >= 100000000 {
+        break;
+    }
+    loop_count = loop_count + 1;
+}
+
+let loop_time_after = time_now();
+let elapsed = loop_time_after - loop_time_before;
+print("Completed 100,000,000 loop iterations\n");
+print("Elapsed time: ");
+print_i64(elapsed);
+print(" seconds\n\n");
+
+// ============================================================
+// 5. Pythagorean Theorem Calculation
+// ============================================================
+print("📐 Pythagorean Theorem Example\n");
+print("──────────────────────────────────────────\n");
+
+let a = 3;
+let b = 4;
+let c_squared = a * a + b * b;
+
+print("For a right triangle with sides a=");
+print_i64(a);
+print(" and b=");
+print_i64(b);
+print(":\n");
+print("c² = ");
+print_i64(c_squared);
+print("\nc = 5 (theoretical)\n\n");
+
+// ============================================================
+// Summary
+// ============================================================
+print("╔════════════════════════════════════════╗\n");
+print("║   All Libraries Imported Successfully  ║\n");
+print("║  - OS Library (getpid, time_now)       ║\n");
+print("║  - Math Library (arithmetic)           ║\n");
+print("║  - Hardware I/O Library (ports)        ║\n");
+print("╚════════════════════════════════════════╝\n");
+
+// Helper function to print i64
+let print_i64 = 42;
+
+print("Demo completed successfully!\n");

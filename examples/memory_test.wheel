@@ -1,0 +1,10 @@
+// Simple Memory Test
+use #memory;
+
+func main() {
+    print("Memory Test");
+    let ptr = mem_alloc(100);
+    print("Allocated");
+    mem_free(ptr);
+    print("Freed");
+}

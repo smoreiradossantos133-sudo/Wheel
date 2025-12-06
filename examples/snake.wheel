@@ -1,0 +1,91 @@
+// Simple Snake (Cobrinha) - simplified fixed-length snake using SDL
+// Controls: WASD or arrows
+// Compile: cargo run --release --features llvm,sdl -- examples/snake.wheel -o snake --mode ll
+
+use #sdl;
+
+// Window
+let W = 480;
+let H = 320;
+let CELL = 16;
+let COLS = 30; // fits 480/16
+let ROWS = 20; // 320/16
+
+sdl_init();
+let ok = sdl_create_window(W, H, "Snake from Wheel");
+if ok == 0 {
+    print("Failed to create window\n");
+} else {
+    // snake storage: up to 8 segments
+    let len = 3;
+    let x0 = 5; let y0 = 5;
+    let x1 = 4; let y1 = 5;
+    let x2 = 3; let y2 = 5;
+    let x3 = 0; let y3 = 0;
+    let x4 = 0; let y4 = 0;
+    let x5 = 0; let y5 = 0;
+    let x6 = 0; let y6 = 0;
+    let x7 = 0; let y7 = 0;
+    
+    let dir = 4; // 1 up,2 left,3 down,4 right
+    let food_x = 10; let food_y = 8;
+
+    loop {
+        // poll input
+        let k = sdl_poll_event();
+        if k == -1 || k == -2 { break; }
+        if k == 1 && dir != 3 { dir = 1; }
+        if k == 2 && dir != 4 { dir = 2; }
+        if k == 3 && dir != 1 { dir = 3; }
+        if k == 4 && dir != 2 { dir = 4; }
+
+        // move snake: shift segments
+        x7 = x6; y7 = y6;
+        x6 = x5; y6 = y5;
+        x5 = x4; y5 = y4;
+        x4 = x3; y4 = y3;
+        x3 = x2; y3 = y2;
+        x2 = x1; y2 = y1;
+        x1 = x0; y1 = y0;
+        
+        // head moves
+        if dir == 1 { y0 = y0 - 1; }
+        if dir == 2 { x0 = x0 - 1; }
+        if dir == 3 { y0 = y0 + 1; }
+        if dir == 4 { x0 = x0 + 1; }
+
+        // wrap around
+        if x0 < 0 { x0 = COLS - 1; }
+        if x0 >= COLS { x0 = 0; }
+        if y0 < 0 { y0 = ROWS - 1; }
+        if y0 >= ROWS { y0 = 0; }
+
+        // check food
+        if x0 == food_x && y0 == food_y {
+            if len < 8 { len = len + 1; }
+            food_x = (food_x + 7) % COLS;
+            food_y = (food_y + 3) % ROWS;
+        }
+
+        // render
+        sdl_clear(0,0,0);
+        // draw food
+        sdl_draw_rect(food_x * CELL, food_y * CELL, CELL, CELL, 255, 0, 0);
+        // draw snake up to len
+        if len >= 1 { sdl_draw_rect(x0 * CELL, y0 * CELL, CELL, CELL, 0, 255, 0); }
+        if len >= 2 { sdl_draw_rect(x1 * CELL, y1 * CELL, CELL, CELL, 0, 200, 0); }
+        if len >= 3 { sdl_draw_rect(x2 * CELL, y2 * CELL, CELL, CELL, 0, 180, 0); }
+        if len >= 4 { sdl_draw_rect(x3 * CELL, y3 * CELL, CELL, CELL, 0, 160, 0); }
+        if len >= 5 { sdl_draw_rect(x4 * CELL, y4 * CELL, CELL, CELL, 0, 140, 0); }
+        if len >= 6 { sdl_draw_rect(x5 * CELL, y5 * CELL, CELL, CELL, 0, 120, 0); }
+        if len >= 7 { sdl_draw_rect(x6 * CELL, y6 * CELL, CELL, CELL, 0, 100, 0); }
+        if len >= 8 { sdl_draw_rect(x7 * CELL, y7 * CELL, CELL, CELL, 0, 80, 0); }
+
+        sdl_present();
+        sdl_delay(120);
+    }
+    sdl_destroy_window();
+    sdl_quit();
+}
+
+print("Exited Snake\n");

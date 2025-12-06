@@ -1,0 +1,9 @@
+// Simple addition test
+print("Enter first number: ");
+let a = input();
+print("Enter second number: ");
+let b = input();
+let sum = a + b;
+print("Sum: ");
+print(sum);
+print("\n");

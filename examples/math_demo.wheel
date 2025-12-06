@@ -1,0 +1,110 @@
+// Mathematical Calculations Demo
+// Compile: cargo run --release --features llvm,math -- examples/math_demo.wheel -o math_demo --mode ll
+// Run: ./math_demo
+
+print("====================================\n");
+print("Mathematical Calculations\n");
+print("====================================\n\n");
+
+print("Basic Arithmetic with Large Numbers:\n\n");
+
+// Test various arithmetic operations
+let a = 1000;
+let b = 37;
+
+print("a = ");
+print(a);
+print("\n");
+print("b = ");
+print(b);
+print("\n\n");
+
+print("a + b = ");
+let add = a + b;
+print(add);
+print("\n");
+
+print("a - b = ");
+let sub = a - b;
+print(sub);
+print("\n");
+
+print("a * b = ");
+let mul = a * b;
+print(mul);
+print("\n");
+
+print("a / b = ");
+let div = a / b;
+print(div);
+print("\n");
+
+print("a % b = ");
+let mod_val = a % b;
+print(mod_val);
+print("\n\n");
+
+// Square calculations
+let num = 12;
+print("num = ");
+print(num);
+print("\n");
+
+print("num * num (square) = ");
+let square = num * num;
+print(square);
+print("\n");
+
+print("num * num * num (cube) = ");
+let cube = num * num * num;
+print(cube);
+print("\n\n");
+
+// Fibonacci-like sequence
+print("Fibonacci-like Sequence:\n");
+let f1 = 1;
+let f2 = 1;
+print(f1);
+print(" ");
+print(f2);
+print(" ");
+
+let i = 0;
+while i < 8 {
+    let f3 = f1 + f2;
+    print(f3);
+    print(" ");
+    f1 = f2;
+    f2 = f3;
+    i = i + 1;
+}
+print("\n\n");
+
+// Pythagorean calculations with integers
+print("Pythagorean calculations (integer approximations):\n");
+let a_side = 3;
+let b_side = 4;
+let hyp_squared = (a_side * a_side) + (b_side * b_side);
+
+print("Side a = ");
+print(a_side);
+print("\n");
+print("Side b = ");
+print(b_side);
+print("\n");
+print("Hypotenuse squared = ");
+print(hyp_squared);
+print("\n");
+print("(a² + b² = 3² + 4² = 9 + 16 = 25, so hypotenuse = 5)\n\n");
+
+// Complex calculation
+print("Complex calculation:\n");
+let x = 100;
+let y = 50;
+let result = (x * y) + (x / y) - (y / 2);
+print("(100 * 50) + (100 / 50) - (50 / 2) = ");
+print(result);
+print("\n");
+
+print("\nNote: Full trigonometric/logarithmic functions require float64 support\n");
+print("Float64 support coming in next LLVM backend update\n");

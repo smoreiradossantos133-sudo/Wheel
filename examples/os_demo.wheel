@@ -1,0 +1,26 @@
+// OS communication example: Process and file operations
+// Compile with: cargo run --release --features llvm,os -- examples/os_demo.wheel -o os_demo --mode ll
+// Run with: ./os_demo
+
+print("=== OS Communication Demo ===\n");
+
+// Get current process ID
+let pid = getpid();
+print("Process ID: ");
+print(pid);
+print("\n");
+
+// Create a simple calculation based on process behavior
+print("Process created successfully\n");
+
+// In a full implementation, we would use:
+// let child_pid = fork();
+// if (child_pid == 0) {
+//     print("Child process started\n");
+// } else {
+//     print("Parent process, waiting for child\n");
+//     wait(child_pid);
+//     print("Child process finished\n");
+// }
+
+print("Fork/wait operations available but require process support\n");

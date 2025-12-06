@@ -1,0 +1,7 @@
+let x = 0;
+
+while x < 3 {
+    print("loop");
+}
+
+print("done");

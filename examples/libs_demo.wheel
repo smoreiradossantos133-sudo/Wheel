@@ -1,0 +1,74 @@
+// Demo de integração das bibliotecas - Com operações que realmente funcionam
+print("====================================\n");
+print("Wheel Libraries Integration Demo\n");
+print("====================================\n");
+print("\n");
+
+// MATH LIBRARY DEMO
+print("1. MATH LIBRARY\n");
+print("===============\n");
+let a = 15;
+let b = 8;
+print("a = ");
+print(a);
+print("\n");
+print("b = ");
+print(b);
+print("\n");
+print("a + b = ");
+print(a + b);
+print("\n");
+print("a * b = ");
+print(a * b);
+print("\n");
+print("a / b = ");
+print(a / b);
+print("\n");
+print("a % b = ");
+print(a % b);
+print("\n");
+print("\n");
+
+// ALGORITMO: Fibonacci com inteiros
+print("2. FIBONACCI SEQUENCE\n");
+print("====================\n");
+let f1 = 1;
+let f2 = 1;
+print("Sequence: ");
+print(f1);
+print(" ");
+print(f2);
+print(" ");
+
+let idx = 0;
+while idx < 6 {
+    let f3 = f1 + f2;
+    print(f3);
+    print(" ");
+    f1 = f2;
+    f2 = f3;
+    idx = idx + 1;
+}
+print("\n");
+print("\n");
+
+// CALCULO: Pitagoras
+print("3. PYTHAGOREAN CALCULATION\n");
+print("==========================\n");
+let side_a = 3;
+let side_b = 4;
+let hyp_squared = (side_a * side_a) + (side_b * side_b);
+print("Sides: ");
+print(side_a);
+print(" and ");
+print(side_b);
+print("\n");
+print("Hypotenuse squared (a^2 + b^2): ");
+print(hyp_squared);
+print("\n");
+print("(Expected: 25, so hypotenuse = 5)\n");
+print("\n");
+
+print("====================================\n");
+print("Demo Complete\n");
+print("====================================\n");

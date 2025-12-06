@@ -1,0 +1,57 @@
+// SDL Graphics Demo - Desenha padrões coloridos
+// Compile: cargo run --release --features llvm,sdl -- examples/sdl_draw.wheel -o sdl_draw --mode ll
+// Run: ./sdl_draw
+
+print("Initializing SDL...\n");
+let init = sdl_init();
+
+if init == 1 {
+    print("Creating window (800x600)...\n");
+    let window = sdl_create_window(800, 600, "Wheel Graphics Demo");
+    
+    if window == 1 {
+        print("Drawing patterns...\n");
+        
+        // Clear to black
+        sdl_clear(0, 0, 0);
+        
+        // Draw red rectangles (horizontal bars)
+        sdl_draw_rect(50, 50, 700, 100, 255, 0, 0);
+        sdl_draw_rect(50, 200, 700, 100, 255, 100, 0);
+        sdl_draw_rect(50, 350, 700, 100, 255, 200, 0);
+        
+        // Draw green rectangles (vertical bars)
+        sdl_draw_rect(100, 100, 100, 400, 0, 255, 0);
+        sdl_draw_rect(300, 100, 100, 400, 0, 200, 100);
+        sdl_draw_rect(500, 100, 100, 400, 0, 150, 150);
+        
+        // Draw blue pixels (grid pattern)
+        let x = 150;
+        let y = 150;
+        while x < 650 {
+            let py = 150;
+            while py < 500 {
+                sdl_draw_pixel(x, py, 0, 0, 255);
+                py = py + 50;
+            }
+            x = x + 50;
+        }
+        
+        print("Displaying scene...\n");
+        sdl_present();
+        
+        print("Window will stay open. Press Ctrl+C to exit.\n");
+        
+        // Keep window open for 5 seconds
+        sleep(5);
+        
+        print("Cleaning up...\n");
+        sdl_destroy_window();
+        sdl_quit();
+        print("Done!\n");
+    } else {
+        print("Failed to create window\n");
+    }
+} else {
+    print("Failed to initialize SDL\n");
+}

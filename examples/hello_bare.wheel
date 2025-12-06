@@ -1,0 +1,5 @@
+// Test without input
+func main() {
+    print("Hello");
+    print("World");
+}

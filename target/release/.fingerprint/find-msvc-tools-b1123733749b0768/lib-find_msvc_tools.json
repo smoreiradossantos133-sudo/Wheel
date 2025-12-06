@@ -1,0 +1,1 @@
+{"rustc":4826714390000139368,"features":"[]","declared_features":"[]","target":10620166500288925791,"profile":18369320580169568572,"path":16769532902480651832,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"release/.fingerprint/find-msvc-tools-b1123733749b0768/dep-lib-find_msvc_tools","checksum":false}}],"rustflags":["-l","LLVM-16"],"config":2069994364910194474,"compile_kind":0}

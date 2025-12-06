@@ -1,0 +1,25 @@
+// Exemplo OS - Process information
+print("=== OS Functions Demo ===\n");
+
+print("Getting process ID...\n");
+let pid = getpid();
+print("Process ID: ");
+print(pid);
+print("\n");
+
+print("Getting current timestamp...\n");
+let t = time_now();
+print("Timestamp: ");
+print(t);
+print("\n");
+
+print("Sleeping for 1 second...\n");
+sleep(1);
+print("Awake!\n");
+
+print("PID doubled: ");
+let double_pid = pid * 2;
+print(double_pid);
+print("\n");
+
+print("=== Demo Complete ===\n");

@@ -1,0 +1,45 @@
+// OS Syscalls Demo - Demonstra operações com o sistema operacional
+// Compile: cargo run --release --features llvm,os -- examples/os_syscalls.wheel -o os_syscalls --mode ll
+// Run: ./os_syscalls
+
+print("====================================\n");
+print("OS Syscalls Demo\n");
+print("====================================\n\n");
+
+// Get and display process ID
+print("1. Getting Process ID\n");
+print("   Current PID: ");
+let my_pid = getpid();
+print(my_pid);
+print("\n\n");
+
+// Sleep for a bit
+print("2. Testing Sleep Function\n");
+print("   Sleeping for 2 seconds...\n");
+sleep(2);
+print("   Done sleeping!\n\n");
+
+// Get current timestamp
+print("3. Getting Current Time\n");
+print("   Timestamp (seconds since epoch): ");
+let timestamp = time_now();
+print(timestamp);
+print("\n\n");
+
+// Demonstrate process calculation
+print("4. Process-based Calculations\n");
+print("   PID * 2 = ");
+let result = my_pid * 2;
+print(result);
+print("\n");
+
+print("   PID / 10 = ");
+let result2 = my_pid / 10;
+print(result2);
+print("\n\n");
+
+print("5. Environment Information\n");
+print("   Process still running successfully\n\n");
+
+print("Demo complete!\n");
+print("Note: Full fork/wait/pipes require parser support for array handling\n");

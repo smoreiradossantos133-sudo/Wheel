@@ -1,0 +1,8 @@
+// Este teste passa tudo constante para while
+// Para demonstrar que a estrutura funciona
+
+if 1 < 3 {
+    print("if with constants works");
+}
+
+print("done");
