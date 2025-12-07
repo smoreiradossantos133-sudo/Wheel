@@ -1,0 +1,3 @@
+# Forçar GitHub Linguist a entender Wheel
+*.wheel linguist-language=Wheel
+*.wheel linguist-detectable=true

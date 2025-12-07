@@ -1,0 +1,5 @@
+Wheel:
+  type: programming
+  color: "#FFD90C"
+  extensions:
+    - ".wheel"

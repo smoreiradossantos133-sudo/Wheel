@@ -106,22 +106,52 @@ fn main() -> Result<()> {
                     let root_str = root.to_string_lossy().to_string();
                     eprintln!("First run detected: adding {} to PATH in shell profiles", root_str);
                     let shells = [".profile", ".bashrc", ".zshrc"];
-                    if let Some(home) = dirs::home_dir() {
-                        for sh in &shells {
-                            let p = home.join(sh);
-                            if p.exists() {
-                                if let Ok(mut s) = fs::read_to_string(&p) {
-                                    let export_line = format!("\n# Added by Wheel installer\nexport PATH=\"{}:$PATH\"\n", root_str);
-                                    if !s.contains(&export_line) {
-                                        if let Ok(mut f) = fs::OpenOptions::new().append(true).open(&p) {
+                    let os_name = std::env::consts::OS;
+                    if os_name == "windows" {
+                        // Try to update the user PATH using setx (will affect future sessions)
+                        eprintln!("First run detected: adding {} to PATH (Windows) using setx", root_str);
+                        if let Ok(cur_path) = std::env::var("PATH") {
+                            let new_path = format!("{};{}", cur_path, root_str);
+                            let _ = Command::new("setx").arg("PATH").arg(&new_path).status();
+                        }
+
+                        // Also add to PowerShell profile so interactive shells pick it up
+                        if let Some(home) = dirs::home_dir() {
+                            let ps_profile = home.join("Documents").join("WindowsPowerShell").join("profile.ps1");
+                            if let Some(parent) = ps_profile.parent() {
+                                let _ = fs::create_dir_all(parent);
+                            }
+                            let export_line = format!("# Added by Wheel installer\n$env:PATH = \"{};$env:PATH\"\n", root_str);
+                            if ps_profile.exists() {
+                                if let Ok(mut s) = fs::read_to_string(&ps_profile) {
+                                    if !s.contains(&root_str) {
+                                        if let Ok(mut f) = OpenOptions::new().append(true).open(&ps_profile) {
                                             let _ = f.write_all(export_line.as_bytes());
                                         }
                                     }
                                 }
                             } else {
-                                // create profile file with export
-                                let export_line = format!("# Added by Wheel installer\nexport PATH=\"{}:$PATH\"\n", root_str);
-                                let _ = fs::write(&p, export_line);
+                                let _ = fs::write(&ps_profile, export_line);
+                            }
+                        }
+                    } else {
+                        if let Some(home) = dirs::home_dir() {
+                            for sh in &shells {
+                                let p = home.join(sh);
+                                if p.exists() {
+                                    if let Ok(mut s) = fs::read_to_string(&p) {
+                                        let export_line = format!("\n# Added by Wheel installer\nexport PATH=\"{}:$PATH\"\n", root_str);
+                                        if !s.contains(&export_line) {
+                                            if let Ok(mut f) = fs::OpenOptions::new().append(true).open(&p) {
+                                                let _ = f.write_all(export_line.as_bytes());
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    // create profile file with export
+                                    let export_line = format!("# Added by Wheel installer\nexport PATH=\"{}:$PATH\"\n", root_str);
+                                    let _ = fs::write(&p, export_line);
+                                }
                             }
                         }
                     }
@@ -176,6 +206,35 @@ fn main() -> Result<()> {
                 .arg("-o").arg(&cli.output)
                 .arg(&asm_path)
                 .status()?
+        } else if target_os == "windows" {
+            // Try common linkers/compilers available on Windows (mingw/clang)
+            let mut ok = false;
+            let mut last_status = None;
+            for cmd in &["gcc", "clang", "lld-link"] {
+                let res = Command::new(cmd)
+                    .arg("-nostdlib")
+                    .arg("-o").arg(&cli.output)
+                    .arg(&asm_path)
+                    .status();
+                match res {
+                    Ok(s) => {
+                        last_status = Some(s);
+                        if s.success() {
+                            ok = true;
+                            break;
+                        }
+                    }
+                    Err(_) => continue,
+                }
+            }
+            if ok {
+                // unwrap is safe because ok==true implies last_status is Some
+                last_status.unwrap()
+            } else if let Some(s) = last_status {
+                s
+            } else {
+                anyhow::bail!("Unsupported OS: {} (no usable compiler/linker found in PATH). Install mingw-w64 or clang.", target_os)
+            }
         } else {
             anyhow::bail!("Unsupported OS: {}", target_os)
         };
@@ -185,6 +244,15 @@ fn main() -> Result<()> {
         }
 
         println!("Generated executable: {}", cli.output.display());
+
+        // If running on Windows, copy the produced executable into dist/Windows/wheelcv1.0.1.exe
+        if target_os == "windows" {
+            let dist_dir = std::path::Path::new("dist").join("Windows");
+            let _ = fs::create_dir_all(&dist_dir);
+            let dest = dist_dir.join("wheelcv1.0.1.exe");
+            let _ = fs::copy(&cli.output, &dest);
+            println!("Also staged Windows executable at {}", dest.display());
+        }
 
     } else if cli.mode == "gb" {
         // Generate flat binary using assembly + gcc

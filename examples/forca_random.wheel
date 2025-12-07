@@ -1,0 +1,54 @@
+#luck;
+#string;
+
+print("=== Jogo da Forca (Wheel Edition) ===");
+print("Adivinhe a palavra!");
+
+let palavras = ["banana", "abacate", "morango", "laranja", "uva", "caju"];
+let palavra = palavras[luck_random( string_length(palavras) )];
+
+let tamanho = string_length(palavra);
+let estado = string_repeat("_", tamanho);
+
+let tentativas = 6;
+
+while tentativas > 0 {
+
+    print("\nPalavra: ");
+    print(estado);
+
+    print("\nTentativas restantes: ");
+    print(tentativas);
+
+    print("\nDigite uma letra: ");
+    let letra = input_char();   # ← leitura correta de UM caractere
+
+    let acertou = false;
+
+    let i = 0;
+    while i < tamanho {
+        if string_char(palavra, i) == letra {
+            estado = string_set_char(estado, i, letra);
+            acertou = true;
+        }
+        i = i + 1;
+    }
+
+    if acertou == false {
+        print("Letra errada!");
+        tentativas = tentativas - 1;
+    }
+
+    if estado == palavra {
+        print("\n\n=== VOCÊ VENCEU! ===");
+        print("\nA palavra era: ");
+        print(palavra);
+        break;
+    }
+}
+
+if estado != palavra {
+    print("\n\n=== FIM DO JOGO ===");
+    print("💀 Você perdeu! A palavra era: ");
+    print(palavra);
+}

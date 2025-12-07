@@ -3,7 +3,6 @@ use #luck;
 print("=== Numero Aleatorio com Luck ===");
 
 let secret = luck_random(100);
-print("Numero secreto gerado: ");
 
 let guess = 0;
 let attempts = 0;
